@@ -1,0 +1,163 @@
+<sc<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>JavaScript Calculator</title>
+
+<!-- This page was created by Enivwe Ochuko. -->
+
+<script type="text/javascript">
+
+
+//defining global variables
+
+var firstDigit=true;
+var operator;
+var saveValue;
+
+//function below is for numeric buttons (excluding zero)
+
+function pressButton(number)
+{
+document.form1.display.value=document.form1.display.value + number;
+
+if (firstDigit==true)
+  {
+  document.form1.display.value=number;
+  firstDigit=false;
+  }
+
+}
+
+//function below is for operator buttons
+
+function operationButton(op)
+{
+saveValue=parseFloat(document.form1.display.value);
+operator=op;
+firstDigit=true;
+document.getElementById("decButton").disabled=false;
+}
+
+//function below is for the equal sign button
+
+function equalButton()
+{
+var currentDisplay=parseFloat(document.form1.display.value);
+var result;
+
+if (operator=='+')
+  {
+  result=saveValue + currentDisplay;
+  }
+if (operator=='-')
+  {
+  result=saveValue - currentDisplay;
+  }
+if (operator=='*')
+  {
+  result=saveValue * currentDisplay;
+  }
+if (operator=='/')
+  {
+  result=saveValue / currentDisplay;
+  }
+
+document.form1.display.value=result;
+firstDigit=true;
+document.getElementById("decButton").disabled=false;
+}
+
+//function below is for the clear button
+
+function clearButton()
+{
+firstDigit=true;
+decimal=false;
+document.form1.display.value="0";
+}
+
+//function below is for the decimal point
+
+function decimalButton()
+{
+document.form1.display.value=document.form1.display.value + '.';
+document.getElementById("decButton").disabled=true;
+
+if (firstDigit==true)
+  {
+  document.form1.display.value='.';
+  firstDigit=false;
+  document.getElementById("decButton").disabled=true;
+  }
+
+}
+
+//function below is for the zero button
+
+function zeroButton()
+{
+
+if (firstDigit==true)
+  {
+  document.form1.display.value=document.form1.display.value;
+  }
+if (firstDigit==false)
+  {
+  document.form1.display.value=document.form1.display.value + '0';
+  }
+
+}
+
+//function below is for the sign change button
+
+function plusMinusButton()
+{
+document.form1.display.value=-document.form1.display.value;
+}
+
+//stop hiding comment-->
+</script>
+</head>
+
+<body>
+<h2 align="center">JavaScript Calculator</h2>
+<br><br><br><br>
+
+<table border="5" cellpadding="10" bgcolor="black" align="center">
+<tr>
+<td>
+
+<form name="form1">
+
+<input type="text" name="display" value="0" style="width:128px">
+<input type="button" value="C" onClick="clearButton()" style="width:40px">
+<br>
+<input type="button" value="1" onClick="pressButton('1')" style="width:40px">
+<input type="button" value="2" onClick="pressButton('2')" style="width:40px">
+<input type="button" value="3" onClick="pressButton('3')" style="width:40px">
+<input type="button" value="+" onClick="operationButton('+')" style="width:40px">
+<br>
+<input type="button" value="4" onClick="pressButton('4')" style="width:40px">
+<input type="button" value="5" onClick="pressButton('5')" style="width:40px">
+<input type="button" value="6" onClick="pressButton('6')" style="width:40px">
+<input type="button" value="-" onClick="operationButton('-')" style="width:40px">
+<br>
+<input type="button" value="7" onClick="pressButton('7')" style="width:40px">
+<input type="button" value="8" onClick="pressButton('8')" style="width:40px">
+<input type="button" value="9" onClick="pressButton('9')" style="width:40px">
+<input type="button" value="*" onClick="operationButton('*')" style="width:40px">
+<br>
+<input type="button" value="0" onClick="zeroButton()" style="width:40px">
+<input type="button" value="." id="decButton" onClick="decimalButton()" style="width:40px">
+<input type="button" value="+/-" onClick="plusMinusButton()" style="width:40px">
+<input type="button" value="/" onClick="operationButton('/')" style="width:40px">
+<br>
+<input type="button" value="=" onClick="equalButton()" style="width:172px">
+
+</form>
+
+</td>
+</tr>
+</table>
+</body>
+</html>
